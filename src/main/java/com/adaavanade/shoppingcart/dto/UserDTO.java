@@ -5,7 +5,11 @@ public record UserDTO(
     String cpf,
     String name,
     String username,
-    String email
+    String email,
+    String password
 ) {
+  public UserDTO(Long id,String cpf,String name,String username,String email){
+    this(id,cpf,name,username,email, null);
+  }
 }
 

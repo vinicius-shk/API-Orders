@@ -3,9 +3,11 @@ package com.adaavanade.shoppingcart.entity;
 import com.adaavanade.shoppingcart.dto.UserDTO;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@NoArgsConstructor
 @Table(name = "Users")
 public class User {
   @Id
@@ -19,6 +21,19 @@ public class User {
   @OneToOne
   @JoinColumn(name = "id_endereco")
   private Address address;
+
+  public User(UserDTO dto) {
+    this.cpf = dto.cpf();
+    this.name = dto.name();
+    this.username = dto.username();
+    this.email = dto.email();
+    this.password = dto.password();
+  }
+
+  public User(UserDTO dto, Long id) {
+    this(dto);
+    this.id = id;
+  }
 
   public UserDTO UserDTO() {
     return new UserDTO(this.getId(),
