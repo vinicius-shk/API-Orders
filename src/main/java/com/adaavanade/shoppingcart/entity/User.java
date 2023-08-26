@@ -4,17 +4,21 @@ import com.adaavanade.shoppingcart.dto.UserDTO;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
 
 @Entity
 @Data
 @NoArgsConstructor
 @Table(name = "Users")
-public class User {
+public class User implements UserDetails {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
   private String cpf;
-  private String name;
+  @Column(unique = true)
   private String username;
   private String email;
   private String password;
@@ -24,7 +28,6 @@ public class User {
 
   public User(UserDTO dto) {
     this.cpf = dto.cpf();
-    this.name = dto.name();
     this.username = dto.username();
     this.email = dto.email();
     this.password = dto.password();
@@ -38,8 +41,32 @@ public class User {
   public UserDTO UserDTO() {
     return new UserDTO(this.getId(),
         this.getCpf(),
-        this.getName(),
         this.getUsername(),
         this.getEmail());
+  }
+
+  @Override
+  public Collection<? extends GrantedAuthority> getAuthorities() {
+    return null;
+  }
+
+  @Override
+  public boolean isAccountNonExpired() {
+    return true;
+  }
+
+  @Override
+  public boolean isAccountNonLocked() {
+    return true;
+  }
+
+  @Override
+  public boolean isCredentialsNonExpired() {
+    return true;
+  }
+
+  @Override
+  public boolean isEnabled() {
+    return true;
   }
 }
