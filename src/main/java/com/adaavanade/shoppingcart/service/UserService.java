@@ -4,6 +4,7 @@ import com.adaavanade.shoppingcart.dto.UserDTO;
 import com.adaavanade.shoppingcart.entity.User;
 import com.adaavanade.shoppingcart.repository.UserRepository;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

@@ -5,12 +5,13 @@ import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 
-@SpringBootApplication()
+@SpringBootApplication
 @AutoConfiguration
 public class ShoppingCartApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ShoppingCartApplication.class, args);
+
 	}
 
 }

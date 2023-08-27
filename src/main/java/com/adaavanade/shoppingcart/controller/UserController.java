@@ -5,6 +5,7 @@ import com.adaavanade.shoppingcart.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,8 +19,6 @@ public class UserController {
     this.userService = userService;
   }
   @PostMapping
-  @ResponseStatus(HttpStatus.CREATED)
-  //TODO: Corrigir msgs de erro
   public UserDTO create (@Valid @RequestBody UserDTO body) {
     return this.userService.create(body);
   }
