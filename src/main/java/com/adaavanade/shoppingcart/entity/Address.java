@@ -1,11 +1,13 @@
 package com.adaavanade.shoppingcart.entity;
 
-import com.adaavanade.shoppingcart.dto.AddressDTO;
+import com.adaavanade.shoppingcart.dto.UserDTO;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@NoArgsConstructor
 @Table(name = "Enderecos")
 public class Address {
   @Id
@@ -17,12 +19,11 @@ public class Address {
   private String address;
   private String cep;
 
-  public AddressDTO enderecoDTO() {
-    return new AddressDTO(this.getId(),
-        this.getState(),
-        this.getCity(),
-        this.getNeighborhood(),
-        this.getAddress(),
-        this.getCep());
+  public Address(UserDTO dto) {
+    this.cep = dto.cep();
+    this.state = dto.cep();
+    this.city = dto.city();
+    this.neighborhood = dto.neighborhood();
+    this.address = dto.address();
   }
 }

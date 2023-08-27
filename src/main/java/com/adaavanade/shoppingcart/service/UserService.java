@@ -3,6 +3,7 @@ package com.adaavanade.shoppingcart.service;
 import com.adaavanade.shoppingcart.dto.UserDTO;
 import com.adaavanade.shoppingcart.entity.User;
 import com.adaavanade.shoppingcart.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,7 @@ public class UserService {
     this.passwordEncoder = passwordEncoder;
   }
 
+  @Transactional
   public UserDTO create(UserDTO dto) {
     User user = new User(dto);
     user.setPassword(passwordEncoder.encode(user.getPassword()));

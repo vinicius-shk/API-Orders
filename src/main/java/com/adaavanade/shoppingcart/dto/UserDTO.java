@@ -2,13 +2,17 @@ package com.adaavanade.shoppingcart.dto;
 
 public record UserDTO(
     Long id,
-    String cpf,
     String username,
     String email,
-    String password
+    String password,
+    String state,
+    String city,
+    String neighborhood,
+    String address,
+    String cep
 ) {
-  public UserDTO(Long id,String cpf,String username,String email){
-    this(id,cpf,username,email, null);
+  public UserDTO(Long id,String username,String email, String state, String city, String neighborhood, String address, String cep){
+    this(id,username,email, null, state, city, neighborhood, address, cep);
   }
 }
 

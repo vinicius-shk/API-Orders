@@ -17,17 +17,16 @@ public class User implements UserDetails {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
-  private String cpf;
   @Column(unique = true)
   private String username;
   private String email;
   private String password;
-  @OneToOne
-  @JoinColumn(name = "id_endereco")
+  @OneToOne(cascade = CascadeType.PERSIST)
+  @JoinColumn(name = "id_address")
   private Address address;
 
   public User(UserDTO dto) {
-    this.cpf = dto.cpf();
+    this.address = new Address(dto);
     this.username = dto.username();
     this.email = dto.email();
     this.password = dto.password();
@@ -40,9 +39,13 @@ public class User implements UserDetails {
 
   public UserDTO UserDTO() {
     return new UserDTO(this.getId(),
-        this.getCpf(),
         this.getUsername(),
-        this.getEmail());
+        this.getEmail(),
+        this.address.getState(),
+        this.address.getCity(),
+        this.address.getNeighborhood(),
+        this.address.getAddress(),
+        this.address.getCep());
   }
 
   @Override
