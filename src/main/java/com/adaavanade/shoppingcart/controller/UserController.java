@@ -2,6 +2,7 @@ package com.adaavanade.shoppingcart.controller;
 
 import com.adaavanade.shoppingcart.dto.UserDTO;
 import com.adaavanade.shoppingcart.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,8 @@ public class UserController {
   }
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
-  public UserDTO create (@RequestBody UserDTO body) {
+  //TODO: Corrigir msgs de erro
+  public UserDTO create (@Valid @RequestBody UserDTO body) {
     return this.userService.create(body);
   }
 

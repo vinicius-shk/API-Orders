@@ -17,6 +17,7 @@ public class User implements UserDetails {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
+  private String cpf;
   @Column(unique = true)
   private String username;
   private String email;
@@ -27,6 +28,7 @@ public class User implements UserDetails {
 
   public User(UserDTO dto) {
     this.address = new Address(dto);
+    this.cpf = dto.cpf();
     this.username = dto.username();
     this.email = dto.email();
     this.password = dto.password();
@@ -39,6 +41,7 @@ public class User implements UserDetails {
 
   public UserDTO UserDTO() {
     return new UserDTO(this.getId(),
+        this.getCpf(),
         this.getUsername(),
         this.getEmail(),
         this.address.getState(),
